@@ -59,8 +59,8 @@ document.querySelectorAll('.face').forEach(face => {
       cube.style.transform = `translateZ(-50px) ${transformStyle}`;
     });
   });
-
-
+  
+  
 // Add event listeners to each face to open the respective modal
 document.querySelectorAll('.face').forEach(face => {
     face.addEventListener('click', function() {
@@ -68,19 +68,11 @@ document.querySelectorAll('.face').forEach(face => {
       document.getElementById(`modal-${faceType}`).style.display = "block";
     });
   });
-
+  
   // Add event listener to close buttons
   document.querySelectorAll('.close').forEach(closeBtn => {
     closeBtn.addEventListener('click', function() {
       this.closest('.modal').style.display = "none";
     });
   });
-
-  document.querySelectorAll('.face').forEach(face => {
-    face.addEventListener('click', function() {
-      const faceType = this.getAttribute('data-face');
-      const modal = document.getElementById(`modal-${faceType}`);
-      modal.style.display = "block";
-      modal.style.opacity = 1; // 激活动画
-    });
-  });
+  
