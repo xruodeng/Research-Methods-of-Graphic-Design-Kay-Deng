@@ -251,7 +251,7 @@ body {
     height: 100%; /* Full height */
     overflow: auto; /* Enable scroll if needed */
     background-color: transparent;
-    opacity: 0; /* 开始时不可见 */
+    opacity: 1; /* 开始时不可见 */
   }
 
   .modal-content {
