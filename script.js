@@ -1,33 +1,58 @@
 const cube = document.getElementById('cube');
 let isDragging = false;
-let previousX, previousY;
+let startX, startY;
 let currentX = 0, currentY = 0; // 当前旋转角度
 let rotationX = 0, rotationY = 0; // 累积旋转角度
 
-document.addEventListener('mousedown', (event) => {
+function startDrag(x, y) {
   isDragging = true;
-  previousX = event.clientX;
-  previousY = event.clientY;
-});
+  startX = x;
+  startY = y;
+}
 
-document.addEventListener('mousemove', (event) => {
+function doDrag(x, y) {
   if (isDragging) {
-    const deltaX = event.clientX - previousX;
-    const deltaY = event.clientY - previousY;
+    const deltaX = x - startX;
+    const deltaY = y - startY;
 
     rotationY += deltaX;
     rotationX -= deltaY;
 
     cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
 
-    previousX = event.clientX;
-    previousY = event.clientY;
+    startX = x;
+    startY = y;
   }
+}
+
+function endDrag() {
+  isDragging = false;
+}
+
+// 鼠标事件
+cube.addEventListener('mousedown', (event) => {
+  startDrag(event.clientX, event.clientY);
 });
 
-document.addEventListener('mouseup', () => {
-  isDragging = false;
+document.addEventListener('mousemove', (event) => {
+  doDrag(event.clientX, event.clientY);
 });
+
+document.addEventListener('mouseup', endDrag);
+
+// 触摸事件
+cube.addEventListener('touchstart', (event) => {
+  const touch = event.touches[0];
+  startDrag(touch.clientX, touch.clientY);
+});
+
+document.addEventListener('touchmove', (event) => {
+  const touch = event.touches[0];
+  doDrag(touch.clientX, touch.clientY);
+});
+
+document.addEventListener('touchend', endDrag);
+
 
 document.querySelectorAll('.face').forEach(face => {
     face.addEventListener('click', function() {
