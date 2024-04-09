@@ -50,7 +50,9 @@ cube.addEventListener('touchstart', (event) => {
 document.addEventListener('touchmove', (event) => {
   const touch = event.touches[0];
   doDrag(touch.clientX, touch.clientY);
-}), { passive: false };
+  event.preventDefault(); // 防止页面滚动
+}, { passive: false }); // 确保{ passive: false }是addEventListener的第三个参数
+
 
 document.addEventListener('touchend', endDrag);
 
