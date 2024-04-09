@@ -44,12 +44,13 @@ document.addEventListener('mouseup', endDrag);
 cube.addEventListener('touchstart', (event) => {
   const touch = event.touches[0];
   startDrag(touch.clientX, touch.clientY);
-});
+  event.preventDefault();
+}, { passive: false });
 
 document.addEventListener('touchmove', (event) => {
   const touch = event.touches[0];
   doDrag(touch.clientX, touch.clientY);
-});
+}), { passive: false };
 
 document.addEventListener('touchend', endDrag);
 
