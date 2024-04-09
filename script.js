@@ -1,61 +1,33 @@
 const cube = document.getElementById('cube');
 let isDragging = false;
-let startX, startY;
+let previousX, previousY;
 let currentX = 0, currentY = 0; // 当前旋转角度
 let rotationX = 0, rotationY = 0; // 累积旋转角度
 
-function startDrag(x, y) {
+document.addEventListener('mousedown', (event) => {
   isDragging = true;
-  startX = x;
-  startY = y;
-}
+  previousX = event.clientX;
+  previousY = event.clientY;
+});
 
-function doDrag(x, y) {
+document.addEventListener('mousemove', (event) => {
   if (isDragging) {
-    const deltaX = x - startX;
-    const deltaY = y - startY;
+    const deltaX = event.clientX - previousX;
+    const deltaY = event.clientY - previousY;
 
     rotationY += deltaX;
     rotationX -= deltaY;
 
     cube.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
 
-    startX = x;
-    startY = y;
+    previousX = event.clientX;
+    previousY = event.clientY;
   }
-}
+});
 
-function endDrag() {
+document.addEventListener('mouseup', () => {
   isDragging = false;
-}
-
-// 鼠标事件
-cube.addEventListener('mousedown', (event) => {
-  startDrag(event.clientX, event.clientY);
 });
-
-document.addEventListener('mousemove', (event) => {
-  doDrag(event.clientX, event.clientY);
-});
-
-document.addEventListener('mouseup', endDrag);
-
-// 触摸事件
-cube.addEventListener('touchstart', (event) => {
-  const touch = event.touches[0];
-  startDrag(touch.clientX, touch.clientY);
-  event.preventDefault();
-}, { passive: false });
-
-document.addEventListener('touchmove', (event) => {
-  const touch = event.touches[0];
-  doDrag(touch.clientX, touch.clientY);
-  event.preventDefault(); // 防止页面滚动
-}, { passive: false }); // 确保{ passive: false }是addEventListener的第三个参数
-
-
-document.addEventListener('touchend', endDrag);
-
 
 document.querySelectorAll('.face').forEach(face => {
     face.addEventListener('click', function() {
@@ -87,8 +59,8 @@ document.querySelectorAll('.face').forEach(face => {
       cube.style.transform = `translateZ(-50px) ${transformStyle}`;
     });
   });
-  
-  
+
+
 // Add event listeners to each face to open the respective modal
 document.querySelectorAll('.face').forEach(face => {
     face.addEventListener('click', function() {
@@ -96,11 +68,19 @@ document.querySelectorAll('.face').forEach(face => {
       document.getElementById(`modal-${faceType}`).style.display = "block";
     });
   });
-  
+
   // Add event listener to close buttons
   document.querySelectorAll('.close').forEach(closeBtn => {
     closeBtn.addEventListener('click', function() {
       this.closest('.modal').style.display = "none";
     });
   });
-  
+
+  document.querySelectorAll('.face').forEach(face => {
+    face.addEventListener('click', function() {
+      const faceType = this.getAttribute('data-face');
+      const modal = document.getElementById(`modal-${faceType}`);
+      modal.style.display = "block";
+      modal.style.opacity = 1; // 激活动画
+    });
+  });
