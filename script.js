@@ -76,14 +76,3 @@ document.querySelectorAll('.face').forEach(face => {
     });
   });
   
-  document.querySelectorAll('.face').forEach(face => {
-    face.addEventListener('click', function() {
-      const faceType = this.getAttribute('data-face');
-      const modal = document.getElementById(`modal-${faceType}`);
-      modal.style.display = "block";
-      modal.style.opacity = 1; // 激活动画
-    });
-  });
-  
-
-  
