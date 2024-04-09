@@ -1,0 +1,313 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 600px; /* 可能需要根据效果调整这个值 */
+    background-color: rgb(203, 203, 203);
+    font-family: "Quicksand", sans-serif;
+    line-height: 1.6; /* 无单位的倍数，相对于当前字体大小 */
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+
+
+
+  
+  #cube {
+    width: 300px; /* 正方体宽度 */
+    height: 300px; /* 正方体高度 */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 1s; /* 如果需要平滑旋转效果 */
+    transform: rotateX(-90deg) rotateY(20deg) rotateZ(30deg);
+  }
+
+  #cube:hover .face {
+    gap: 0; /* 鼠标悬停时设置间隙为0 */
+    transition: 1s;
+  }
+
+
+
+
+
+
+
+
+
+  
+  .face {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 创建3列，每列占等宽 */
+    grid-template-rows: repeat(3, 1fr); /* 创建3行，每行占等高 */
+    gap: 15px; /* 可选，设置网格间隙 */
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: 1s;
+  }  
+
+
+
+
+  .top .grid-square{
+    background-image: url(images/top.png); /* 设置背景图 */
+    background-size: 300px 300px;
+  }
+
+  .top  div:nth-child(3n+2) {
+    background-position-X: -100px;
+ }
+ 
+  .top  div:nth-child(3n+3) {
+    background-position-X: -200px;
+ }
+ 
+  .top  div:nth-child(n+4) {
+    background-position-Y: -100px;
+ }
+ 
+  .top  div:nth-child(n+7) {
+    background-position-Y: -200px;
+ }
+
+
+
+
+ .bottom .grid-square{
+    background-image: url(images/bot.png); /* 设置背景图 */
+    background-size: 300px 300px;
+  }
+
+  .bottom  div:nth-child(3n+2) {
+    background-position-X: -100px;
+ }
+ 
+  .bottom  div:nth-child(3n+3) {
+    background-position-X: -200px;
+ }
+ 
+  .bottom  div:nth-child(n+4) {
+    background-position-Y: -100px;
+ }
+ 
+  .bottom  div:nth-child(n+7) {
+    background-position-Y: -200px;
+ }
+
+
+
+
+
+  
+  .front .grid-square{
+    background-image: url(images/A-1.png); /* 设置背景图 */
+    background-size: 300px 300px;
+  }
+
+  .front div:nth-child(3n+2) {
+    background-position-X: -100px;
+ }
+ 
+  .front div:nth-child(3n+3) {
+    background-position-X: -200px;
+ }
+ 
+  .front div:nth-child(n+4) {
+    background-position-Y: -100px;
+ }
+ 
+  .front div:nth-child(n+7) {
+    background-position-Y: -200px;
+ }
+
+
+
+
+
+
+
+
+
+  .back .grid-square{
+    background-image: url(images/B-1.png); /* 设置背景图 */
+    background-size: 300px 300px;
+  }
+
+  .back div:nth-child(3n+2) {
+    background-position-X: -100px;
+ }
+ 
+  .back div:nth-child(3n+3) {
+    background-position-X: -200px;
+ }
+ 
+  .back div:nth-child(n+4) {
+    background-position-Y: -100px;
+ }
+ 
+  .back div:nth-child(n+7) {
+    background-position-Y: -200px;
+ }
+
+
+
+
+
+
+
+
+
+  .left .grid-square{
+    background-image: url(images/C-1.png); /* 设置背景图 */
+    background-size: 300px 300px;
+  }
+
+  .left div:nth-child(3n+2) {
+    background-position-X: -100px;
+ }
+ 
+  .left div:nth-child(3n+3) {
+    background-position-X: -200px;
+ }
+ 
+  .left div:nth-child(n+4) {
+    background-position-Y: -100px;
+ }
+ 
+  .left div:nth-child(n+7) {
+    background-position-Y: -200px;
+ }
+
+
+
+
+
+
+
+
+
+
+ .right .grid-square{
+    background-image: url(images/D-1.png); /* 设置背景图 */
+    background-size: 300px 300px;
+  }
+
+  .right div:nth-child(3n+2) {
+    background-position-X: -100px;
+ }
+ 
+ 
+  .right div:nth-child(3n+3) {
+    background-position-X: -200px;
+ }
+ 
+ 
+  .right div:nth-child(n+4) {
+    background-position-Y: -100px;
+ }
+ 
+  .right div:nth-child(n+7) {
+    background-position-Y: -200px;
+ }
+
+
+
+ 
+
+  .grid-square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(125, 125, 125, 0); /* 设置小方块的背景颜色 */
+    opacity: 1;
+    color: rgb(0, 0, 0); /* 设置文本颜色 */
+    font-size: 30px; /* 可调整字体大小 */
+  }
+  
+  
+  .front { transform: translateZ(150px); }
+  .back { transform: rotateY(180deg) translateZ(150px); }
+  .right { transform: rotateY(90deg) translateZ(150px); }
+  .left { transform: rotateY(-90deg) translateZ(150px); }
+  .top { transform: rotateX(90deg) translateZ(150px); }
+  .bottom { transform: rotateX(-90deg) translateZ(150px); }
+  
+
+
+
+
+
+
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: transparent;
+    opacity: 0; /* 开始时不可见 */
+  }
+
+  .modal-content {
+    background-color: #fefefedb;
+    margin: 10% auto; /* 减少上下边距以适应较大的文字框 */
+    padding: 60px; /* 增加内边距以提供更多空间 */
+    width: 70%; /* 增加宽度百分比 */
+    max-width: 1000px; /* 增加最大宽度限制 */
+    /* 可选: 增加高度 */
+    min-height: 400px; /* 增加最小高度 */
+    overflow: auto; /* 如果内容超出则显示滚动条 */
+    border-radius: 10px; /* 添加圆角效果 */
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  
+  
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+h3{
+    font-size: 40px;
+    font-weight: 800;
+ }
+
+.external_links a{
+    color: rgb(148, 148, 148);
+    text-decoration: underline;
+ }
+ 
+ 
+.external_links a:hover{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+ }
+
+ @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
