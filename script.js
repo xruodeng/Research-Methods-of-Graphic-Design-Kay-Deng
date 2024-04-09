@@ -1,36 +1,8 @@
 const cube = document.getElementById('cube');
-let lastTouchX, lastTouchY;
 let isDragging = false;
 let previousX, previousY;
 let currentX = 0, currentY = 0; // 当前旋转角度
 let rotationX = 0, rotationY = 0; // 累积旋转角度
-
-cube.addEventListener('touchstart', (e) => {
-  // 防止默认的处理方式（防止触摸滑动屏幕）
-  e.preventDefault();
-  const touch = e.touches[0];
-  lastTouchX = touch.clientX;
-  lastTouchY = touch.clientY;
-}, { passive: false });
-
-cube.addEventListener('touchmove', (e) => {
-  e.preventDefault();
-  const touch = e.touches[0];
-  const deltaX = touch.clientX - lastTouchX;
-  const deltaY = touch.clientY - lastTouchY;
-
-  // 根据移动的距离计算旋转的角度
-  const rotateY = parseInt(getComputedStyle(cube).getPropertyValue('--rotate-y') || 0);
-  const rotateX = parseInt(getComputedStyle(cube).getPropertyValue('--rotate-x') || 0);
-
-  // 更新正方体的旋转角度
-  cube.style.setProperty('--rotate-y', rotateY + deltaX + 'deg');
-  cube.style.setProperty('--rotate-x', rotateX - deltaY + 'deg');
-
-  lastTouchX = touch.clientX;
-  lastTouchY = touch.clientY;
-}, { passive: false });
-
 
 document.addEventListener('mousedown', (event) => {
   isDragging = true;
@@ -112,10 +84,6 @@ document.querySelectorAll('.face').forEach(face => {
       modal.style.opacity = 1; // 激活动画
     });
   });
+  
 
-
-
-
-
-
-
+  
