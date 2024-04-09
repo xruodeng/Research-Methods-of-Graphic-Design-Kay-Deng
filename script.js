@@ -88,7 +88,7 @@ document.querySelectorAll('.face').forEach(face => {
 
 
 
-
+const cube = document.getElementById('cube');
 let lastTouchX, lastTouchY;
 
 cube.addEventListener('touchstart', (e) => {
